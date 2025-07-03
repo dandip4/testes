@@ -279,4 +279,102 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         sectionObserver.observe(section);
     });
+});
+
+// Microsoft 365 Comparison Tab Switching
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.m365-compare-tabs .tab');
+    const familyCard = document.querySelector('.m365-family');
+    const personalCard = document.querySelector('.m365-personal');
+    
+    if (tabs.length > 0) {
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Update pricing based on selected tab
+                const isYearly = tab.textContent.includes('tahun');
+                
+                if (isYearly) {
+                    // Show yearly pricing
+                    if (familyCard) {
+                        const priceElement = familyCard.querySelector('.m365-price');
+                        if (priceElement) {
+                            priceElement.textContent = 'Rp1.699.999/tahun';
+                        }
+                        const monthlyLink = familyCard.querySelector('.m365-link');
+                        if (monthlyLink) {
+                            monthlyLink.textContent = 'Atau beli di Rp169.999/bulan';
+                        }
+                    }
+                    if (personalCard) {
+                        const priceElement = personalCard.querySelector('.m365-price');
+                        if (priceElement) {
+                            priceElement.textContent = 'Rp1.359.999/tahun';
+                        }
+                        const monthlyLink = personalCard.querySelector('.m365-link');
+                        if (monthlyLink) {
+                            monthlyLink.textContent = 'Atau beli di Rp135.999/bulan';
+                        }
+                    }
+                } else {
+                    // Show monthly pricing
+                    if (familyCard) {
+                        const priceElement = familyCard.querySelector('.m365-price');
+                        if (priceElement) {
+                            priceElement.textContent = 'Rp169.999/bulan';
+                        }
+                        const monthlyLink = familyCard.querySelector('.m365-link');
+                        if (monthlyLink) {
+                            monthlyLink.textContent = 'Atau beli di Rp1.699.999/tahun';
+                        }
+                    }
+                    if (personalCard) {
+                        const priceElement = personalCard.querySelector('.m365-price');
+                        if (priceElement) {
+                            priceElement.textContent = 'Rp135.999/bulan';
+                        }
+                        const monthlyLink = personalCard.querySelector('.m365-link');
+                        if (monthlyLink) {
+                            monthlyLink.textContent = 'Atau beli di Rp1.359.999/tahun';
+                        }
+                    }
+                }
+            });
+        });
+    }
+});
+
+// Add hover effects for Microsoft 365 cards
+document.addEventListener('DOMContentLoaded', () => {
+    const m365Cards = document.querySelectorAll('.m365-card');
+    
+    m365Cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+});
+
+// Add hover effects for benefit items
+document.addEventListener('DOMContentLoaded', () => {
+    const benefitItems = document.querySelectorAll('.m365-benefit-item');
+    
+    benefitItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
 }); 
